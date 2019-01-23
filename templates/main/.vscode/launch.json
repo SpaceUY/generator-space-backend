@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug with ts-node",
+      "type": "node",
+      "request": "launch",
+      "args": [
+        "${workspaceRoot}/src/index.ts",
+      ],
+      "runtimeArgs": [
+        "--nolazy",
+        "-r",
+        "ts-node/register",
+      ],
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector",
+      "envFile": "${workspaceFolder}/.env",
+    },
+    {
+      "name": "Debug transpiled",
+      "type": "node",
+      "request": "launch",
+      "preLaunchTask": "typescript",
+      "program": "${workspaceFolder}/src/index.ts",
+      "cwd": "${workspaceFolder}",
+      "protocol": "inspector",
+      "outFiles": [
+        "${workspaceFolder}/build/**/*.js",
+      ],
+      "envFile": "${workspaceFolder}/.env",
+    },
+  ],
+  "compounds": []
+}
