@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "",
   "files": [
-    "generators"
+    "generators",
+    "templates"
   ],
   "keywords": [
     "yeoman-generator"
