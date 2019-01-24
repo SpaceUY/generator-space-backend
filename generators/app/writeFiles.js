@@ -116,7 +116,7 @@ function writeMain(yo, appname) {
     yo.destinationPath('.env'),
   );
   yo.fs.copy(
-    yo.templatePath('main/.gitignore'),
+    yo.templatePath('main/gitignore.txt'),
     yo.destinationPath('.gitignore'),
   );
   yo.fs.copy(
