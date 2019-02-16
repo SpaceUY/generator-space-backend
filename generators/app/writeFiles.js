@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 const Generator = require('yeoman-generator');
+const dep = require('../../util/dependencies');
 
 /**
  * Adds dependencies for Linting
@@ -46,18 +47,7 @@ function npmLint(yo) {
  * @param {Generator} yo
  */
 function npmMongoose(yo) {
-  yo.fs.extendJSON(
-    yo.destinationPath('package.json'),
-    {
-      dependencies: {
-        mongoose: '^5.3.14',
-        typegoose: '^5.4.1',
-      },
-      devDependencies: {
-        '@types/mongoose': '^5.3.2',
-      },
-    },
-  );
+  dep.addDependencies(yo, ['mongoose', 'typegoose'], ['@types/mongoose']);
 }
 
 /**
@@ -65,18 +55,7 @@ function npmMongoose(yo) {
  * @param {Generator} yo
  */
 function npmGraphQL(yo) {
-  yo.fs.extendJSON(
-    yo.destinationPath('package.json'),
-    {
-      dependencies: {
-        'express-graphql': '^0.7.1',
-        'type-graphql': '^0.15.0',
-      },
-      devDependencies: {
-        '@types/express-graphql': '^0.6.2',
-      },
-    },
-  );
+  dep.addDependencies(yo, ['express-graphql', 'type-graphql'], ['@types/express-graphql']);
 }
 
 /**
@@ -84,19 +63,7 @@ function npmGraphQL(yo) {
  * @param {Generator} yo
  */
 function npmPassport(yo) {
-  yo.fs.extendJSON(
-    yo.destinationPath('package.json'),
-    {
-      dependencies: {
-        passport: '^0.4.0',
-        'passport-local': '^1.0.0',
-      },
-      devDependencies: {
-        '@types/passport': '^0.4.7',
-        '@types/passport-local': '^1.0.33',
-      },
-    },
-  );
+  dep.addDependencies(yo, ['passport', 'passport-local'], ['@types/passport', '@types/passport-local']);
 }
 
 /**

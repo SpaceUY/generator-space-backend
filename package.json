@@ -4,7 +4,8 @@
   "description": "",
   "files": [
     "generators",
-    "templates"
+    "templates",
+    "util"
   ],
   "keywords": [
     "yeoman-generator"
