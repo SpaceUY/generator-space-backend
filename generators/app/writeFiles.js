@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 const Generator = require('yeoman-generator');
 const dep = require('../../util/dependencies');
+const file = require('../../util/files');
 
 /**
  * Adds dependencies for Linting
@@ -40,30 +41,6 @@ function npmLint(yo) {
       },
     },
   );
-}
-
-/**
- * Adds dependencies for Mongoose
- * @param {Generator} yo
- */
-function npmMongoose(yo) {
-  dep.addDependencies(yo, ['mongoose', 'typegoose'], ['@types/mongoose']);
-}
-
-/**
- * Adds dependencies for GraphQL
- * @param {Generator} yo
- */
-function npmGraphQL(yo) {
-  dep.addDependencies(yo, ['express-graphql', 'type-graphql'], ['@types/express-graphql']);
-}
-
-/**
- * Adds dependencies for PassportJS
- * @param {Generator} yo
- */
-function npmPassport(yo) {
-  dep.addDependencies(yo, ['passport', 'passport-local'], ['@types/passport', '@types/passport-local']);
 }
 
 /**
@@ -141,9 +118,9 @@ export const PlayerModel = new Player().getModelForClass(Player, schema);
 export const TeamModel = new Team().getModelForClass(Team, schema);`;
   }
 
-  yo.fs.copyTpl(
-    yo.templatePath('src/models/index.ts'),
-    yo.destinationPath('src/models/index.ts'),
+  file.addFile(
+    yo,
+    'src/models/index.ts',
     {
       imports,
       models,
@@ -151,9 +128,9 @@ export const TeamModel = new Team().getModelForClass(Team, schema);`;
   );
 
   if (samples) {
-    yo.fs.copy(
-      yo.templatePath('src/models/definitions/**'),
-      yo.destinationPath('src/models/definitions'),
+    file.addFolder(
+      yo,
+      'src/models/definitions/',
     );
   }
 }
@@ -174,9 +151,9 @@ import TeamResolver from './resolvers/TeamResolver';\n`;
     resolvers = 'PlayerResolver, TeamResolver';
   }
 
-  yo.fs.copyTpl(
-    yo.templatePath('src/graph/index.ts'),
-    yo.destinationPath('src/graph/index.ts'),
+  file.addFile(
+    yo,
+    'src/graph/index.ts',
     {
       imports,
       resolvers,
@@ -184,17 +161,13 @@ import TeamResolver from './resolvers/TeamResolver';\n`;
   );
 
   if (samples) {
-    yo.fs.copy(
-      yo.templatePath('src/graph/inputs/**'),
-      yo.destinationPath('src/graph/inputs'),
-    );
-    yo.fs.copy(
-      yo.templatePath('src/graph/resolvers/**'),
-      yo.destinationPath('src/graph/resolvers'),
-    );
-    yo.fs.copy(
-      yo.templatePath('src/graph/types/**'),
-      yo.destinationPath('src/graph/types'),
+    file.addFolders(
+      yo,
+      [
+        'src/graph/inputs/',
+        'src/graph/resolvers/',
+        'src/graph/types/',
+      ],
     );
   }
 }
@@ -223,7 +196,7 @@ import * as cors from 'cors';`;
   // mongoose
   if (features.includes('mongoose')) {
     yo.log('Writing Mongoose files...');
-    npmMongoose(yo);
+    dep.addDependencies(yo, ['mongoose', 'typegoose'], ['@types/mongoose']);
     writeMongoose(yo, samples);
 
     imports += '\nimport * as mongoose from \'mongoose\';';
@@ -239,7 +212,7 @@ import * as cors from 'cors';`;
   // graphql
   if (features.includes('graphql')) {
     yo.log('Writing GraphQL files...');
-    npmGraphQL(yo);
+    dep.addDependencies(yo, ['express-graphql', 'type-graphql'], ['@types/express-graphql']);
     writeGraphQL(yo, samples);
 
     imports += '\nimport * as ExpressGraphQL from \'express-graphql\';';
@@ -250,16 +223,16 @@ import * as cors from 'cors';`;
   // passport
   if (features.includes('passport')) {
     yo.log('Writing PassportJS files...');
-    npmPassport(yo);
+    dep.addDependencies(yo, ['passport', 'passport-local'], ['@types/passport', '@types/passport-local']);
     writePassport(yo);
 
     passport = '\nrequire(\'./configs/passport\');\n';
   }
 
   // middleware
-  yo.fs.copy(
-    yo.templatePath('src/middleware/**'),
-    yo.destinationPath('src/middleware'),
+  file.addFolder(
+    yo,
+    'src/middleware/',
   );
 
   // routes
@@ -269,23 +242,23 @@ import * as cors from 'cors';`;
 
 app.use('/auth', auth);`;
 
-    yo.fs.copy(
-      yo.templatePath('src/routes/auth/**'),
-      yo.destinationPath('src/routes/auth'),
+    file.addFolder(
+      yo,
+      'src/routes/auth/',
     );
   }
-  yo.fs.copyTpl(
-    yo.templatePath('src/routes/index.ts'),
-    yo.destinationPath('src/routes/index.ts'),
+  file.addFile(
+    yo,
+    'src/routes/index.ts',
     {
       routes,
     },
   );
 
   yo.log('Writing index.ts...');
-  yo.fs.copyTpl(
-    yo.templatePath('src/index.ts'),
-    yo.destinationPath('src/index.ts'),
+  file.addFile(
+    yo,
+    'src/index.ts',
     {
       imports,
       mongooseBody,
