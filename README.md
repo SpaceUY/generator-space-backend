@@ -35,6 +35,6 @@ For the current version, the available features are:
 - **Code Linting (recommended):** All of the project's linting was put into its own, separate feature. The wizard will include it by default, but you can disable it if you'd rather not use linting. (But why would you do that?)
 - **Mongoose:** This feature references [Typegoose](https://github.com/szokodiakos/typegoose), a typescript layer of [Mongoose](https://mongoosejs.com/). (**Note:** This feature will require you to include a uri to a MongoDB database as `DB_URI` in the .env file)
 - **GraphQL:** This feature references [TypeGraphQL](https://19majkel94.github.io/type-graphql/), a typescript layer of [GraphQL](https://graphql.org/).
-- **PassportJS:** This feature is used for handling authentication. By default, it come's with [PassportJS](http://www.passportjs.org/)'s Local Strategy
+- **PassportJS:** This feature is used for handling authentication. By default, it comes with [PassportJS](http://www.passportjs.org/)'s Local Strategy
 ## Samples
 Sample code is available to be included by the wizard upon creating a project for the relevant features you selected.
