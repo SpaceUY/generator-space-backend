@@ -1,6 +1,10 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
 const ts = require('typescript');
+const fs = require('fs');
+const path = require('path');
+const Linter = require('tslint').Linter;
+const configuration = require('tslint').Configuration;
 
 function isFeaturesArray(node) {
   return ts.isVariableDeclarationList(node)
@@ -112,7 +116,40 @@ function removeFeature(sourceFile, feature) {
   return sourceFile;
 }
 
+/**
+ *
+ * @param {string} fullPath
+ */
+function readFile(fullPath) {
+  const source = fs.readFileSync(path, 'utf8');
+  return ts.createSourceFile(
+    path.basename(fullPath), source, ts.ScriptTarget.ES2017, true, ts.ScriptKind.TS,
+  );
+}
+
+/**
+ *
+ * @param {string} fullPath
+ * @param {ts.SourceFile} sourceFile
+ */
+function writeFile(fullPath, lintPath, sourceFile) {
+  const file = ts.createPrinter().printFile(sourceFile);
+
+  const options = {
+    fix: true,
+  };
+
+  const lint = new Linter(options);
+  const config = configuration.findConfiguration(lintPath, fullPath).results;
+  lint.lint(fullPath, file, config);
+
+  const updatedSource = fs.readFileSync(fullPath, 'utf8');
+  lint.lint(fullPath, updatedSource, config);
+}
+
 module.exports = {
   addFeature,
   removeFeature,
+  readFile,
+  writeFile,
 };
