@@ -1,7 +1,10 @@
-<%- imports %>
+import * as express from 'express';
+import * as bodyparser from 'body-parser';
+import * as cors from 'cors';
 
-import routes from './routes';<%- graphImport %>
-<%- mongooseBody %><%- passport %>
+import features from './features';
+import routes from './routes';
+
 const app = express();
 
 app.use(
@@ -14,8 +17,9 @@ app.use(
 );
 app.use(bodyparser.json({ limit: '1mb' }));
 
+features({ app });
 app.use(routes);
-<%- appUseGraph %>
+
 app.listen(process.env.PORT, () => {
   console.log('Express Ready');
 });

@@ -12,6 +12,8 @@
   ],
   "dependencies": {
     "inquirer": "^6.2.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3",
     "yeoman-generator": "^1.0.0"
   },
   "devDependencies": {
