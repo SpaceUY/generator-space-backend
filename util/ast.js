@@ -3,8 +3,7 @@
 const ts = require('typescript');
 const fs = require('fs');
 const path = require('path');
-const Linter = require('tslint').Linter;
-const configuration = require('tslint').Configuration;
+const { Linter, Configuration } = require('tslint');
 
 function isFeaturesArray(node) {
   return ts.isVariableDeclarationList(node)
@@ -121,7 +120,7 @@ function removeFeature(sourceFile, feature) {
  * @param {string} fullPath
  */
 function readFile(fullPath) {
-  const source = fs.readFileSync(path, 'utf8');
+  const source = fs.readFileSync(fullPath, 'utf8');
   return ts.createSourceFile(
     path.basename(fullPath), source, ts.ScriptTarget.ES2017, true, ts.ScriptKind.TS,
   );
@@ -140,7 +139,7 @@ function writeFile(fullPath, lintPath, sourceFile) {
   };
 
   const lint = new Linter(options);
-  const config = configuration.findConfiguration(lintPath, fullPath).results;
+  const config = Configuration.findConfiguration(lintPath, fullPath).results;
   lint.lint(fullPath, file, config);
 
   const updatedSource = fs.readFileSync(fullPath, 'utf8');

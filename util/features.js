@@ -38,6 +38,18 @@ class Feature {
       yo,
       `src/features/${this.fileName}.ts`,
     );
+    if (this.options.featureFilePaths && this.options.featureFilePaths.length) {
+      files.addFiles(
+        yo,
+        this.options.featureFilePaths,
+      );
+    }
+    if (this.options.featureFolderPaths && this.options.featureFolderPaths.length) {
+      files.addFolders(
+        yo,
+        this.options.featureFolderPaths,
+      );
+    }
     dep.addDependencies(
       yo,
       this.dependencies,
@@ -56,6 +68,18 @@ class Feature {
       yo,
       `src/features/${this.fileName}.ts`,
     );
+    if (this.options.featureFilePaths && this.options.featureFilePaths.length) {
+      files.removeFiles(
+        yo,
+        this.options.featureFilePaths,
+      );
+    }
+    if (this.options.featureFolderPaths && this.options.featureFolderPaths.length) {
+      files.removeFolders(
+        yo,
+        this.options.featureFolderPaths,
+      );
+    }
     dep.removeDependencies(
       yo,
       this.dependencies.concat(this.devDependencies),
@@ -75,4 +99,19 @@ function getAddedFeatures(yo) {
 module.exports = {
   Feature,
   getAddedFeatures,
+};
+
+const featureList = require('./featureList');
+/**
+ * @param {string} name
+ * @returns {Feature}
+ */
+function getFeature(name) {
+  return featureList.find(ft => ft.fileName === name);
+}
+
+module.exports = {
+  Feature,
+  getAddedFeatures,
+  getFeature,
 };

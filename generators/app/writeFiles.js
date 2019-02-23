@@ -2,6 +2,8 @@
 const Generator = require('yeoman-generator');
 const dep = require('../../util/dependencies');
 const file = require('../../util/files');
+const features = require('../../util/features');
+const ast = require('../../util/ast');
 
 /**
  * Adds dependencies for Linting
@@ -183,30 +185,41 @@ function writePassport(yo) {
   );
 }
 
-function writeSrc(yo, features, samples) {
-  let imports = `import * as express from \'express\';
-import * as bodyparser from \'body-parser\';
-import * as cors from 'cors';`;
+function writeSrc(yo, fts) {
+  file.addFile(
+    yo,
+    'src/index.ts',
+  );
 
-  let mongooseBody = '';
-  let passport = '';
-  let graphImport = '';
-  let appUseGraph = '';
+  file.addFile(
+    yo,
+    'src/routes/index.ts',
+  );
 
+  file.addFile(
+    yo,
+    'src/features/index.ts',
+  );
+
+  let sourceFile = ast.readFile(yo.destinationPath('src/features/index.ts'));
+
+  fts.forEach((ft) => {
+    sourceFile = features.getFeature(ft).addFeature(yo, sourceFile);
+  });
+
+  ast.writeFile(
+    yo.destinationPath('src/features/index.ts'),
+    yo.destinationPath('tslint.json'),
+    sourceFile,
+  );
+}
+
+function writeSrcOld(yo, features, samples) {
   // mongoose
   if (features.includes('mongoose')) {
     yo.log('Writing Mongoose files...');
     dep.addDependencies(yo, ['mongoose', 'typegoose'], ['@types/mongoose']);
     writeMongoose(yo, samples);
-
-    imports += '\nimport * as mongoose from \'mongoose\';';
-    mongooseBody = `\nif (process.env.DB_URI === undefined) throw Error('DB_URI is not defined in .env file.');\nmongoose.connect(
-  process.env.DB_URI as string,
-  {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-  },
-);\n`;
   }
 
   // graphql
@@ -214,10 +227,6 @@ import * as cors from 'cors';`;
     yo.log('Writing GraphQL files...');
     dep.addDependencies(yo, ['express-graphql', 'type-graphql'], ['@types/express-graphql']);
     writeGraphQL(yo, samples);
-
-    imports += '\nimport * as ExpressGraphQL from \'express-graphql\';';
-    graphImport = '\nimport graph from \'./graph\';';
-    appUseGraph = 'app.use(ExpressGraphQL(graph));\n';
   }
 
   // passport
@@ -225,8 +234,6 @@ import * as cors from 'cors';`;
     yo.log('Writing PassportJS files...');
     dep.addDependencies(yo, ['passport', 'passport-local'], ['@types/passport', '@types/passport-local']);
     writePassport(yo);
-
-    passport = '\nrequire(\'./configs/passport\');\n';
   }
 
   // middleware
@@ -236,36 +243,15 @@ import * as cors from 'cors';`;
   );
 
   // routes
-  let routes = '';
-  if (samples) {
-    routes = `import auth from './auth';
-
-app.use('/auth', auth);`;
-
-    file.addFolder(
-      yo,
-      'src/routes/auth/',
-    );
-  }
   file.addFile(
     yo,
     'src/routes/index.ts',
-    {
-      routes,
-    },
   );
 
   yo.log('Writing index.ts...');
   file.addFile(
     yo,
     'src/index.ts',
-    {
-      imports,
-      mongooseBody,
-      passport,
-      graphImport,
-      appUseGraph,
-    },
   );
 }
 
@@ -276,12 +262,10 @@ app.use('/auth', auth);`;
 module.exports = function writeFiles(yo, answers) {
   yo.log('Writing project files...');
   writeMain(yo, answers.appname);
-  if (answers.features.includes('lint')) {
-    yo.log('Writing Linting files...');
-    writeLint(yo);
-  }
+  yo.log('Writing Linting files...');
+  writeLint(yo);
 
-  writeSrc(yo, answers.features, answers.sample);
+  writeSrc(yo, answers.features);
 
   yo.config.set('features', answers.features);
 

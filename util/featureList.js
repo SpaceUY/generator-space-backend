@@ -7,6 +7,11 @@ module.exports = [
     'typegoose',
     ['mongoose', 'typegoose'],
     ['@types/mongoose'],
+    {
+      featureFilePaths: [
+        'src/models/index.ts',
+      ],
+    },
   ),
   new Feature(
     'TypeGraphQL',
@@ -14,6 +19,11 @@ module.exports = [
     'typeGraphQL',
     ['express-graphql', 'type-graphql'],
     ['@types/express-graphql'],
+    {
+      featureFilePaths: [
+        'src/graph/index.ts',
+      ],
+    },
   ),
   new Feature(
     'Passport',

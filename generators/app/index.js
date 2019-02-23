@@ -19,21 +19,15 @@ module.exports = class extends Generator {
         name: 'features',
         message: 'What features would you like to include?',
         choices: [
-          new inquirer.Separator('Development'),
-          {
-            name: 'Code Linting (recommended)',
-            value: 'lint',
-            checked: true,
-          },
           new inquirer.Separator('Backend Features'),
           {
             name: 'Mongoose',
-            value: 'mongoose',
+            value: 'typegoose',
             checked: true,
           },
           {
             name: 'GraphQL',
-            value: 'graphql',
+            value: 'typeGraphQL',
           },
           {
             name: 'PassportJS',

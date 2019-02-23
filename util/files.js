@@ -64,10 +64,28 @@ function removeFile(yo, path) {
 /**
  *
  * @param {Generator} yo
+ * @param {string[]} paths
+ */
+function removeFiles(yo, paths) {
+  paths.forEach(path => removeFile(yo, path));
+}
+
+/**
+ *
+ * @param {Generator} yo
  * @param {string} path
  */
 function removeFolder(yo, path) {
   yo.fs.delete(yo.destinationPath(path));
+}
+
+/**
+ *
+ * @param {Generator} yo
+ * @param {string[]} paths
+ */
+function removeFolders(yo, paths) {
+  paths.forEach(path => removeFolder(yo, path));
 }
 
 module.exports = {
@@ -76,5 +94,7 @@ module.exports = {
   addFolder,
   addFolders,
   removeFile,
+  removeFiles,
   removeFolder,
+  removeFolders,
 };
