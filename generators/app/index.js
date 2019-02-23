@@ -1,5 +1,4 @@
 const Generator = require('yeoman-generator');
-const inquirer = require('inquirer');
 const writeFiles = require('./writeFiles');
 
 module.exports = class extends Generator {
