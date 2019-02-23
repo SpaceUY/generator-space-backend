@@ -1,5 +1,5 @@
 import { Router } from 'express';
-const features = [
+const features: Features = [
 ];
 export default function (context: FeatureContext) {
   features.forEach(ft => {
@@ -9,3 +9,4 @@ export default function (context: FeatureContext) {
 export interface FeatureContext {
   app: Router;
 }
+type Features = ((ctx: FeatureContext) => void)[];

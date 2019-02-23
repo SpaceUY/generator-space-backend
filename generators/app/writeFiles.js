@@ -3,6 +3,7 @@ const Generator = require('yeoman-generator');
 const dep = require('../../util/dependencies');
 const file = require('../../util/files');
 const features = require('../../util/features');
+const featureList = require('../../util/featureList');
 const ast = require('../../util/ast');
 
 /**
@@ -185,7 +186,7 @@ function writePassport(yo) {
   );
 }
 
-function writeSrc(yo, fts) {
+function writeSrc(yo) {
   file.addFile(
     yo,
     'src/index.ts',
@@ -201,17 +202,17 @@ function writeSrc(yo, fts) {
     'src/features/index.ts',
   );
 
-  let sourceFile = ast.readFile(yo.destinationPath('src/features/index.ts'));
+  // let sourceFile = ast.readFile(yo.destinationPath('src/features/index.ts'));
 
-  fts.forEach((ft) => {
-    sourceFile = features.getFeature(ft).addFeature(yo, sourceFile);
-  });
+  // fts.forEach((ft) => {
+  //   sourceFile = features.getFeature(featureList, ft).addFeature(yo, sourceFile);
+  // });
 
-  ast.writeFile(
-    yo.destinationPath('src/features/index.ts'),
-    yo.destinationPath('tslint.json'),
-    sourceFile,
-  );
+  // ast.writeFile(
+  //   yo.destinationPath('src/features/index.ts'),
+  //   yo.destinationPath('tslint.json'),
+  //   sourceFile,
+  // );
 }
 
 function writeSrcOld(yo, features, samples) {
@@ -265,9 +266,9 @@ module.exports = function writeFiles(yo, answers) {
   yo.log('Writing Linting files...');
   writeLint(yo);
 
-  writeSrc(yo, answers.features);
+  writeSrc(yo);
 
-  yo.config.set('features', answers.features);
+  yo.config.set('features', []);
 
   yo.log('Finished writing files.');
 };

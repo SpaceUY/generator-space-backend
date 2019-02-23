@@ -13,35 +13,7 @@ module.exports = class extends Generator {
   }
 
   async prompting() {
-    const questions = [
-      {
-        type: 'checkbox',
-        name: 'features',
-        message: 'What features would you like to include?',
-        choices: [
-          new inquirer.Separator('Backend Features'),
-          {
-            name: 'Mongoose',
-            value: 'typegoose',
-            checked: true,
-          },
-          {
-            name: 'GraphQL',
-            value: 'typeGraphQL',
-          },
-          {
-            name: 'PassportJS',
-            value: 'passport',
-          },
-        ],
-      },
-      {
-        type: 'confirm',
-        name: 'sample',
-        message: 'Woud you like Sample Code to be included?',
-        default: true,
-      },
-    ];
+    const questions = [];
 
     if (!this.options.appname) {
       questions.unshift({

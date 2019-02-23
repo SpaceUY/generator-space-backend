@@ -91,22 +91,18 @@ class Feature {
 /**
  *
  * @param {Generator} yo
+ * @returns {string[]}
  */
 function getAddedFeatures(yo) {
   return yo.config.get('features');
 }
 
-module.exports = {
-  Feature,
-  getAddedFeatures,
-};
-
-const featureList = require('./featureList');
 /**
+ * @param {Feature[]} featureList
  * @param {string} name
  * @returns {Feature}
  */
-function getFeature(name) {
+function getFeature(featureList, name) {
   return featureList.find(ft => ft.fileName === name);
 }
 
