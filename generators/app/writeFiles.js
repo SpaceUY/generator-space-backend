@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 const Generator = require('yeoman-generator');
+const fs = require('fs');
 const dep = require('../../util/dependencies');
 const file = require('../../util/files');
 const features = require('../../util/features');
@@ -269,6 +270,10 @@ module.exports = function writeFiles(yo, answers) {
   writeSrc(yo);
 
   yo.config.set('features', []);
+  yo.config.set(
+    'version',
+    JSON.parse(fs.readFileSync(yo.templatePath('../package.json'), 'utf8')).version,
+  );
 
   yo.log('Finished writing files.');
 };
