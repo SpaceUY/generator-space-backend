@@ -3,7 +3,7 @@ const { Feature } = require('./features');
 /**
  * @typedef FeatureList
  * @type {Feature[]}
- * @property {(string) => Feature} get
+ * @property {(name: string) => Feature} get
  */
 
 /** @type {FeatureList} */
