@@ -1,6 +1,13 @@
 const { Feature } = require('./features');
 
-module.exports = [
+/**
+ * @typedef FeatureList
+ * @type {Feature[]}
+ * @property {(string) => Feature} get
+ */
+
+/** @type {FeatureList} */
+const featureList = [
   new Feature(
     'Typegoose',
     'A typescript layer of Mongoose. (Note: This feature will require you to include a uri to a MongoDB database as DB_URI in the .env file)',
@@ -33,3 +40,9 @@ module.exports = [
     ['@types/passport', '@types/passport-local'],
   ),
 ];
+
+featureList.get = function get(name) {
+  return this.find(ft => ft.fileName === name);
+};
+
+module.exports = featureList;
