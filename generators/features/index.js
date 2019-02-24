@@ -17,7 +17,7 @@ module.exports = class extends Generator {
 
   async prompting() {
     if (!this.options.list) {
-      const currentFeatures = features.getAddedFeatures(this);
+      const currentFeatures = features.getAddedFeatures(this) || [];
 
       const choices = featuresList.map(ft => ({
         name: ft.name,

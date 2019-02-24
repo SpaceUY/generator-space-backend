@@ -134,6 +134,7 @@ module.exports = function writeFiles(yo, answers) {
     JSON.parse(fs.readFileSync(yo.templatePath('../package.json'), 'utf8')).version,
   );
   yo.config.set('features', []);
+  yo.config.set('middleware', []);
 
   yo.log('Finished writing files.');
 };
