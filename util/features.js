@@ -97,17 +97,7 @@ function getAddedFeatures(yo) {
   return yo.config.get('features');
 }
 
-/**
- * @param {Feature[]} featureList
- * @param {string} name
- * @returns {Feature}
- */
-function getFeature(featureList, name) {
-  return featureList.find(ft => ft.fileName === name);
-}
-
 module.exports = {
   Feature,
   getAddedFeatures,
-  getFeature,
 };
