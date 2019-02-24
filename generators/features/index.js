@@ -69,10 +69,10 @@ module.exports = class extends Generator {
       let sourceFile = ast.readFile(this.destinationPath('src/features/index.ts'));
 
       feautresToAdd.forEach((ft) => {
-        sourceFile = features.getFeature(featuresList, ft).addFeature(this, sourceFile);
+        sourceFile = featuresList.get(ft).addFeature(this, sourceFile);
       });
       feautresToRemove.forEach((ft) => {
-        sourceFile = features.getFeature(featuresList, ft).removeFeature(this, sourceFile);
+        sourceFile = featuresList.get(ft).removeFeature(this, sourceFile);
       });
 
       ast.writeFile(
