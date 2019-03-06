@@ -1,7 +1,7 @@
 {
   "name": "generator-space-backend",
   "version": "2.0.0",
-  "description": "",
+  "description": "Yeoman generator for a typescript backend",
   "files": [
     "generators",
     "templates",
@@ -9,7 +9,10 @@
     "README.md"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "SpaceUY",
+    "backend",
+    "typescript"
   ],
   "dependencies": {
     "inquirer": "^6.2.1",
