@@ -3,7 +3,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { UserModel } from '../models';
 import { FeatureContext } from '.';
 
-export default function ({}: FeatureContext) {
+export default async function ({}: FeatureContext) {
 
   passport.use(
     new LocalStrategy(
