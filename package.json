@@ -1,17 +1,21 @@
 {
   "name": "generator-space-backend",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "description": "",
   "files": [
     "generators",
-    "templates"
+    "templates",
+    "util",
+    "README.md"
   ],
   "keywords": [
     "yeoman-generator"
   ],
   "dependencies": {
     "inquirer": "^6.2.1",
-    "yeoman-generator": "^1.0.0"
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3",
+    "yeoman-generator": "^3.2.0"
   },
   "devDependencies": {
     "eslint": "^5.3.0",

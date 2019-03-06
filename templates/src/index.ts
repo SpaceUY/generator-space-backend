@@ -1,21 +1,29 @@
-<%- imports %>
+import * as express from 'express';
+import * as bodyparser from 'body-parser';
+import * as cors from 'cors';
 
-import routes from './routes';<%- graphImport %>
-<%- mongooseBody %><%- passport %>
-const app = express();
+import features from './features';
+import routes from './routes';
 
-app.use(
-  cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    credentials: true,
-    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
-  }),
-);
-app.use(bodyparser.json({ limit: '1mb' }));
+async function main() {
+  const app = express();
 
-app.use(routes);
-<%- appUseGraph %>
-app.listen(process.env.PORT, () => {
-  console.log('Express Ready');
-});
+  app.use(
+    cors({
+      origin: '*',
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      credentials: true,
+      allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+    }),
+  );
+  app.use(bodyparser.json({ limit: '1mb' }));
+
+  await features({ app });
+  app.use(routes);
+
+  app.listen(process.env.PORT, () => {
+    console.log('Express Ready');
+  });
+}
+
+main();

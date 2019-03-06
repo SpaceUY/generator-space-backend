@@ -24,7 +24,7 @@ yo space-backend
 ## Powered by Peritus-TS
 A lot of the development features provided by this generator are from [Peritus-TS](https://github.com/SpaceUY/peritus-ts-project-template). Take a look at the readme there if you wan't an explanation of the individual components that are available, such as debugging straight from typescript, and linting that is enforced even upon committing changes.
 
-### Current Version: *1 (Sapling)*
+### Current Version: *2 (Keystone)*
 Available features and backend structure may vary between different versions, so it's recommended to keep a copy of this readme in your project for future reference. If you intend on providing a readme specific to your project, feel free to rename this file to something like *space-backend.md*.
 
 ## Features
@@ -32,9 +32,20 @@ Individual capabilities your backend can have are separated into *features*. By 
   
 For the current version, the available features are:
 
-- **Code Linting (recommended):** All of the project's linting was put into its own, separate feature. The wizard will include it by default, but you can disable it if you'd rather not use linting. (But why would you do that?)
-- **Mongoose:** This feature references [Typegoose](https://github.com/szokodiakos/typegoose), a typescript layer of [Mongoose](https://mongoosejs.com/). (**Note:** This feature will require you to include a uri to a MongoDB database as `DB_URI` in the .env file)
-- **GraphQL:** This feature references [TypeGraphQL](https://19majkel94.github.io/type-graphql/), a typescript layer of [GraphQL](https://graphql.org/).
+- **[Typegoose](https://github.com/szokodiakos/typegoose):** A typescript layer of [Mongoose](https://mongoosejs.com/). (**Note:** This feature will require you to include a uri to a MongoDB database as `DB_URI` in the .env file)
+- **[TypeGraphQL](https://19majkel94.github.io/type-graphql/):** A typescript layer of [GraphQL](https://graphql.org/).
 - **PassportJS:** This feature is used for handling authentication. By default, it comes with [PassportJS](http://www.passportjs.org/)'s Local Strategy
-## Samples
-Sample code is available to be included by the wizard upon creating a project for the relevant features you selected.
+
+A List of available features can be accessed through the command: `yo space-backend:features --list`
+Add and remove features by calling: `yo space-backend:features --force` (--force skips overwrite confirmations)
+
+## Middleware
+These can be added to express endpoints to provide intermittent functionality.
+
+For the current version, the available middleware are:
+
+- **Requires:** Checks that a request contains the specified queries, params and body
+- **WithAuth:** Requires that a requester be authenticated in order to access an endpoint
+
+A List of available middleware can be accessed through the command: `yo space-backend:middleware --list`
+Add and remove middleware by calling `yo space-backend:middleware --force` (--force skips overwrite confirmations)

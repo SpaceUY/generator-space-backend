@@ -1,5 +1,4 @@
 const Generator = require('yeoman-generator');
-const inquirer = require('inquirer');
 const writeFiles = require('./writeFiles');
 
 module.exports = class extends Generator {
@@ -13,41 +12,7 @@ module.exports = class extends Generator {
   }
 
   async prompting() {
-    const questions = [
-      {
-        type: 'checkbox',
-        name: 'features',
-        message: 'What features would you like to include?',
-        choices: [
-          new inquirer.Separator('Development'),
-          {
-            name: 'Code Linting (recommended)',
-            value: 'lint',
-            checked: true,
-          },
-          new inquirer.Separator('Backend Features'),
-          {
-            name: 'Mongoose',
-            value: 'mongoose',
-            checked: true,
-          },
-          {
-            name: 'GraphQL',
-            value: 'graphql',
-          },
-          {
-            name: 'PassportJS',
-            value: 'passport',
-          },
-        ],
-      },
-      {
-        type: 'confirm',
-        name: 'sample',
-        message: 'Woud you like Sample Code to be included?',
-        default: true,
-      },
-    ];
+    const questions = [];
 
     if (!this.options.appname) {
       questions.unshift({
