@@ -75,6 +75,10 @@ function writeMain(yo, appname) {
     yo.templatePath('main/gulpfile.js'),
     yo.destinationPath('gulpfile.js'),
   );
+  yo.fs.copy(
+    yo.templatePath('../README.md'),
+    yo.destinationPath('space-backend.md'),
+  );
 }
 
 /**

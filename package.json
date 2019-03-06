@@ -5,7 +5,8 @@
   "files": [
     "generators",
     "templates",
-    "util"
+    "util",
+    "README.md"
   ],
   "keywords": [
     "yeoman-generator"
