@@ -8,7 +8,7 @@ npm install -g yo
 ```
 2. Install **generator-space-backend**:
 ```bash
-npm install -g "https://github.com/SpaceUY/generator-space-backend"
+npm install -g generator-space-backend
 ```
 3. Create a new repository and clone locally
 4. Go to local repository and run the following command:
