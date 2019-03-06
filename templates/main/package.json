@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
+    "build": "gulp",
     "start": "tsc && node build/index.js"
   },
   "keywords": [],
@@ -29,6 +29,8 @@
     "@types/express": "^4.16.0",
     "@types/jsonwebtoken": "^8.3.0",
     "@types/node": "^10.12.10",
-    "ts-node": "^7.0.1"
+    "ts-node": "^7.0.1",
+    "gulp": "^4.0.0",
+    "gulp-typescript": "^5.0.0"
   }
 }

@@ -67,10 +67,13 @@ function writeMain(yo, appname) {
     yo.templatePath('main/tsconfig.json'),
     yo.destinationPath('tsconfig.json'),
   );
-
   yo.fs.copy(
     yo.templatePath('main/.vscode/**'),
     yo.destinationPath('.vscode'),
+  );
+  yo.fs.copy(
+    yo.templatePath('main/gulpfile.js'),
+    yo.destinationPath('gulpfile.js'),
   );
 }
 
