@@ -1,6 +1,6 @@
 {
-  "name": "generator-space-backend",
-  "version": "2.0.0",
+  "name": "@space-uy/generator-space-backend",
+  "version": "2.0.2",
   "description": "Yeoman generator for a typescript backend",
   "files": [
     "generators",
