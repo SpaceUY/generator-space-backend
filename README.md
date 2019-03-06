@@ -36,8 +36,8 @@ For the current version, the available features are:
 - **[TypeGraphQL](https://19majkel94.github.io/type-graphql/):** A typescript layer of [GraphQL](https://graphql.org/).
 - **PassportJS:** This feature is used for handling authentication. By default, it comes with [PassportJS](http://www.passportjs.org/)'s Local Strategy
 
-A List of available features can be accessed through the command: `yo space-backend:features --list`
-Add and remove features by calling: `yo space-backend:features --force` (--force skips overwrite confirmations)
+A List of available features can be accessed through the command: `yo space-backend:features --list`  
+Add and remove features by calling: `yo space-backend:features --force` (--force skips overwrite confirmations)  
 
 ## Middleware
 These can be added to express endpoints to provide intermittent functionality.
@@ -47,5 +47,5 @@ For the current version, the available middleware are:
 - **Requires:** Checks that a request contains the specified queries, params and body
 - **WithAuth:** Requires that a requester be authenticated in order to access an endpoint
 
-A List of available middleware can be accessed through the command: `yo space-backend:middleware --list`
-Add and remove middleware by calling `yo space-backend:middleware --force` (--force skips overwrite confirmations)
+A List of available middleware can be accessed through the command: `yo space-backend:middleware --list`  
+Add and remove middleware by calling `yo space-backend:middleware --force` (--force skips overwrite confirmations)  
