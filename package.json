@@ -1,6 +1,6 @@
 {
   "name": "@space-uy/generator-space-backend",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Yeoman generator for a typescript backend",
   "files": [
     "generators",
@@ -10,10 +10,21 @@
   ],
   "keywords": [
     "yeoman-generator",
+    "yeoman",
     "SpaceUY",
     "backend",
-    "typescript"
+    "typescript",
+    "express"
   ],
+  "homepage": "https://github.com/SpaceUY/generator-space-backend",
+  "bugs": {
+    "url": "https://github.com/SpaceUY/generator-space-backend/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SpaceUY/generator-space-backend.git"
+  },
   "dependencies": {
     "inquirer": "^6.2.1",
     "tslint": "^5.12.1",
