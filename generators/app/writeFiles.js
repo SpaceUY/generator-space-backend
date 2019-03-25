@@ -97,14 +97,6 @@ function writeLint(yo) {
   );
 
   npmLint(yo);
-
-  yo.fs.extendJSON(
-    yo.destinationPath('.vscode/settings.json'),
-    {
-      'editor.formatOnSave': false,
-      'tslint.autoFixOnSave': true,
-    },
-  );
 }
 
 function writeSrc(yo) {
