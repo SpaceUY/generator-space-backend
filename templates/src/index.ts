@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as bodyparser from 'body-parser';
-import * as cors from 'cors';
+import cors from './util/cors';
 
 import features from './features';
 import routes from './routes';
@@ -11,9 +11,22 @@ async function main() {
   app.use(
     cors({
       origin: '*',
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-      credentials: true,
-      allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+      methods: [
+        'GET',
+        'PUT',
+        'POST',
+        'DELETE',
+        'OPTIONS',
+      ],
+      headers: [
+        'Content-Type',
+        'Authorization',
+        'Content-Length',
+        'X-Requested-With',
+        'Origin',
+        'Accept',
+        'Authorization',
+      ],
     }),
   );
   app.use(bodyparser.json({ limit: '1mb' }));
