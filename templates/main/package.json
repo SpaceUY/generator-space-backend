@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "gulp",
-    "start": "tsc && node build/index.js"
+    "start": "gulp && node build/index.js",
+    "dev:features": "yo @space-uy/space-backend:features --force",
+    "dev:features:list": "yo @space-uy/space-backend:features --list",
+    "dev:middleware": "yo @space-uy/space-backend:middleware --force",
+    "dev:middleware:list": "yo @space-uy/space-backend:middleware --list"
   },
   "keywords": [],
   "author": "",
