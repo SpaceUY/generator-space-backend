@@ -13,7 +13,7 @@ npm install -g @space-uy/generator-space-backend
 3. Create a new repository and clone locally
 4. Go to local repository and run the following command:
 ```bash
-yo space-backend
+yo @space-uy/space-backend
 ```
 5. Answer the wizard's questions
 6. Wait for packages to be installed...
@@ -34,10 +34,10 @@ For the current version, the available features are:
 
 - **[Typegoose](https://github.com/szokodiakos/typegoose):** A typescript layer of [Mongoose](https://mongoosejs.com/). (**Note:** This feature will require you to include a uri to a MongoDB database as `DB_URI` in the .env file)
 - **[TypeGraphQL](https://19majkel94.github.io/type-graphql/):** A typescript layer of [GraphQL](https://graphql.org/).
-- **PassportJS:** This feature is used for handling authentication. By default, it comes with [PassportJS](http://www.passportjs.org/)'s Local Strategy
+- **[PassportJS](http://www.passportjs.org/):** This feature is used for handling authentication. By default, it comes with Passport's Local Strategy
 
-A List of available features can be accessed through the command: `yo space-backend:features --list`  
-Add and remove features by calling: `yo space-backend:features --force` (--force skips overwrite confirmations)  
+A List of available features can be accessed through the command: `npm run dev:features:list`  
+Add and remove features by calling: `npm run dev:features` (--force skips overwrite confirmations)  
 
 ## Middleware
 These can be added to express endpoints to provide intermittent functionality.
@@ -47,5 +47,8 @@ For the current version, the available middleware are:
 - **Requires:** Checks that a request contains the specified queries, params and body
 - **WithAuth:** Requires that a requester be authenticated in order to access an endpoint
 
-A List of available middleware can be accessed through the command: `yo space-backend:middleware --list`  
-Add and remove middleware by calling `yo space-backend:middleware --force` (--force skips overwrite confirmations)  
+A List of available middleware can be accessed through the command: `npm run dev:middleware:list`  
+Add and remove middleware by calling `npm run dev:middleware`
+
+## Roadmap
+Current progress of this project, as well as planned additions, can be viewed on our [trello board](https://trello.com/b/OGVxsiwL)
