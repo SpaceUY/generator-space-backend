@@ -108,19 +108,14 @@ function writeLint(yo) {
 }
 
 function writeSrc(yo) {
-  file.addFile(
+  file.addFiles(
     yo,
-    'src/index.ts',
-  );
-
-  file.addFile(
-    yo,
-    'src/routes/index.ts',
-  );
-
-  file.addFile(
-    yo,
-    'src/features/index.ts',
+    [
+      'src/index.ts',
+      'src/routes/index.ts',
+      'src/features/index.ts',
+      'src/util/cors.ts',
+    ],
   );
 }
 
