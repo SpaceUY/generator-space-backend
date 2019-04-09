@@ -3,5 +3,5 @@ import graph from '../graph';
 import { FeatureContext } from '.';
 
 export default async function ({ app }: FeatureContext) {
-  app.use(ExpressGraphQL(graph));
+  app.use(ExpressGraphQL(await graph()));
 }
