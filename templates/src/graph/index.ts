@@ -1,16 +1,16 @@
 import 'reflect-metadata';
-import { OptionsData } from 'express-graphql';
+import { OptionsData, GraphQLParams } from 'express-graphql';
 import { buildSchema } from 'type-graphql';
+import { Request, Response } from 'express';
 
 export default async function () {
   const schema = await buildSchema({
-    resolvers: [
-    ],
+    resolvers: [],
   });
 
-  const options: OptionsData = {
-    schema,
+  return (req: Request, res: Response, params?: GraphQLParams): OptionsData => {
+    return {
+      schema,
+    };
   };
-
-  return options;
 }
