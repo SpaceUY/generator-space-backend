@@ -5,7 +5,7 @@ import cors from './util/cors';
 import features from './features';
 import routes from './routes';
 
-async function main() {
+async function main(): Promise<void> {
   const app = express();
 
   app.use(

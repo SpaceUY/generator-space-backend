@@ -77,7 +77,7 @@ module.exports = class extends Generator {
 
       ast.writeFile(
         this.destinationPath('src/features/index.ts'),
-        this.destinationPath('tslint.json'),
+        this.templatePath('linting/tslint.json'),
         sourceFile,
       );
 

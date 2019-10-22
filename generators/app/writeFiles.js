@@ -12,10 +12,10 @@ function npmLint(yo) {
     yo.destinationPath('package.json'),
     {
       scripts: {
-        lint: 'tslint --project tsconfig.json src/**/*.ts',
-        'lint:one': 'tslint --project tsconfig.json',
-        'lint:write': 'tslint --project tsconfig.json src/**/*.ts --fix',
-        'lint:write:one': 'tslint --project tsconfig.json --fix',
+        lint: 'eslint src/**/*.ts',
+        'lint:one': 'eslint',
+        'lint:write': 'eslint src/**/*.ts --fix',
+        'lint:write:one': 'eslint --fix',
         prettier: 'prettier --write src/**/*.ts',
         'prettier:one': 'prettier --write',
         lintAndPretty: 'npm run prettier && npm run lint:write',
@@ -24,8 +24,11 @@ function npmLint(yo) {
         husky: '^1.2.0',
         'lint-staged': '^8.1.0',
         prettier: '^1.15.2',
-        tslint: '^5.11.0',
-        'tslint-config-airbnb': '^5.11.1',
+        '@typescript-eslint/eslint-plugin': '^1.7.0',
+        '@typescript-eslint/parser': '^1.7.0',
+        eslint: '^5.3.0',
+        'eslint-config-airbnb-base': '^13.1.0',
+        'eslint-plugin-import': '^2.14.0',
       },
       husky: {
         hooks: {
@@ -94,6 +97,11 @@ function writeLint(yo) {
   yo.fs.copy(
     yo.templatePath('linting/.editorconfig'),
     yo.destinationPath('.editorconfig'),
+  );
+
+  yo.fs.copy(
+    yo.templatePath('linting/.eslintrc.js'),
+    yo.destinationPath('.eslintrc.js'),
   );
 
   npmLint(yo);

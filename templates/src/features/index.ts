@@ -1,7 +1,7 @@
 import { Router } from 'express';
-const features: Features = [
-];
-export default async function (context: FeatureContext) {
+
+const features: Features = [];
+export default async function (context: FeatureContext): Promise<void> {
   for (const feature of features) {
     await feature(context);
   }

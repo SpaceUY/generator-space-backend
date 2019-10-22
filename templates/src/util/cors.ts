@@ -14,7 +14,7 @@ export default function cors(options: CorsOptions): corsMiddleware {
       res.header(
         'Access-Control-Allow-Headers',
         options.headers.join(', '),
-        );
+      );
       return res.sendStatus(200);
     }
     next();
@@ -22,7 +22,7 @@ export default function cors(options: CorsOptions): corsMiddleware {
 }
 
 export type corsMiddleware = (req: Request, res: Response, next: NextFunction) => void;
-export type corsMethods = 'GET' | 'PUT' | 'POST' | 'DELETE' | 'OPTIONS';
+export type corsMethods = 'GET' | 'PUT' | 'POST' | 'PATCH' | 'DELETE' | 'OPTIONS';
 export interface CorsOptions {
   origin: string;
   methods: corsMethods[];
